@@ -1,17 +1,18 @@
 #ifndef INCIDENTSTATE_H
 #define INCIDENTSTATE_H
 
-namespace CampusGuard {
-	class IncidentState {
+#include <string>
 
+class Incident;
 
-	public:
-		void activate(CampusGuard::Incident* incident);
+class IncidentState
+{
+public:
+    virtual void activate(Incident* incident) = 0;
+    virtual void resolve(Incident* incident) = 0;
+    virtual std::string getName() = 0;
 
-		void resolve(CampusGuard::Incident* incident);
-
-		string getName();
-	};
-}
+    virtual ~IncidentState() {}
+};
 
 #endif

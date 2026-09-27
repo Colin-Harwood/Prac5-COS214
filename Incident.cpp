@@ -1,35 +1,36 @@
 #include "Incident.h"
+#include "IncidentState.h"
+#include "ReportedState.h"
 
-void CampusGuard::Incident::activate() {
-	// TODO - implement Incident::activate
-	throw "Not yet implemented";
+Incident::Incident(std::string id, std::string type, std::string location,std::string description) :
+id(id), type(type), location(location), description(description) {
+    state = new ReportedState();
+} // every new incident starts as a reported state
+
+Incident::~Incident() 
+{
+    delete state;
 }
 
-void CampusGuard::Incident::resolve() {
-	// TODO - implement Incident::resolve
-	throw "Not yet implemented";
+void Incident::activate()
+{
+    state->activate(this);
 }
+    
+void Incident::resolve()
+{
+    state->resolve(this);
+}    
 
-void CampusGuard::Incident::setState(IncidentState* state) {
-	this->state = state;
-}
+void Incident::setState(IncidentState* newState)
+{
+    // reassign state then delete old state
+    IncidentState* oldState = state;
+    state = newState;
+    delete oldState;
+}    
 
-string CampusGuard::Incident::getStateName() {
-	// TODO - implement Incident::getStateName
-	throw "Not yet implemented";
-}
-
-void CampusGuard::Incident::attach() {
-	// TODO - implement Incident::attach
-	throw "Not yet implemented";
-}
-
-void CampusGuard::Incident::detach() {
-	// TODO - implement Incident::detach
-	throw "Not yet implemented";
-}
-
-void CampusGuard::Incident::notifyObservers() {
-	// TODO - implement Incident::notifyObservers
-	throw "Not yet implemented";
+std::string Incident::getStateName()
+{
+    return state->getName();
 }

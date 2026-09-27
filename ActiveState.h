@@ -1,17 +1,15 @@
 #ifndef ACTIVESTATE_H
 #define ACTIVESTATE_H
 
-namespace CampusGuard {
-	class ActiveState : CampusGuard::IncidentState {
+#include "IncidentState.h"
 
+class ActiveState : public IncidentState
+{
+public:
+    void activate(Incident* incident) override;
+    void resolve(Incident* incident) override;
 
-	public:
-		void activate(CampusGuard::Incident* incident);
-
-		void resolve(CampusGuard::Incident* incident);
-
-		string getName();
-	};
-}
+    std::string getName() override;
+};
 
 #endif

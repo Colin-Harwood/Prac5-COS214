@@ -1,17 +1,16 @@
 #ifndef RESOLVEDSTATE_H
 #define RESOLVEDSTATE_H
 
-namespace CampusGuard {
-	class ResolvedState : CampusGuard::IncidentState {
+#include "IncidentState.h"
 
+#include <iostream>
 
-	public:
-		void activate(CampusGuard::Incident* incident);
-
-		void resolve(CampusGuard::Incident* incident);
-
-		string getName();
-	};
-}
+class ResolvedState : public IncidentState
+{
+public:
+    void activate(Incident* incident) override;
+    void resolve(Incident* incident) override;
+    std::string getName() override;
+};
 
 #endif

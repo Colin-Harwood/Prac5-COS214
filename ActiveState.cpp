@@ -1,16 +1,20 @@
 #include "ActiveState.h"
+#include "Incident.h"
+#include "ResolvedState.h"
 
-void CampusGuard::ActiveState::activate(CampusGuard::Incident* incident) {
-	// TODO - implement ActiveState::activate
-	throw "Not yet implemented";
+#include <iostream>
+
+void ActiveState::activate(Incident* incident)
+{
+    std::cout << "Incident is already active" << std::endl;
 }
 
-void CampusGuard::ActiveState::resolve(CampusGuard::Incident* incident) {
-	// TODO - implement ActiveState::resolve
-	throw "Not yet implemented";
+void ActiveState::resolve(Incident* incident)
+{
+    incident->setState(new ResolvedState());
 }
 
-string CampusGuard::ActiveState::getName() {
-	// TODO - implement ActiveState::getName
-	throw "Not yet implemented";
+std::string ActiveState::getName()
+{
+    return "Active";
 }
