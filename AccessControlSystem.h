@@ -2,10 +2,16 @@
 #define ACCESSCONTROLSYSTEM_H
 
 #include <string>
+#include <map>
+#include "Colleague.h"
 
 namespace CampusGuard
 {
-	class AccessControlSystem{
+	class AccessControlSystem : public Colleague{
+
+	private:
+        std::map<std::string, std::string> areaStates;
+
 	public:
 		AccessControlSystem() = default;
 		

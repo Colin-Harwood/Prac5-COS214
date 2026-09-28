@@ -1,6 +1,5 @@
 #include "Colleague.h"
 
-void CampusGuard::Colleague::changed() {
-	// TODO - implement Colleague::changed
-	throw "Not yet implemented";
+void Colleague::changed() {
+	cout << "Notified of update" << endl; 
 }

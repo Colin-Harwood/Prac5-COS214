@@ -2,10 +2,11 @@
 #define ALERTSERVICE_H
 
 #include <string>
+#include "Colleague.h"
+using namespace std;
 
 namespace CampusGuard {
-	class AlertService{
-
+	class AlertService : public Colleague{
 
 	public:
 		AlertService() = default;
