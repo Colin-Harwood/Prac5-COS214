@@ -1,14 +1,13 @@
 #ifndef FACILITIESTEAM_H
 #define FACILITIESTEAM_H
 
-namespace CampusGuard {
-	class FacilitiesTeam : CampusGuard::ResponseUnit {
+#include "ResponseUnit.h"
 
-	private:
-		string id;
-		string type;
-		string available;
-	};
-}
+class FacilitiesTeam : public ResponseUnit {
+	public:
+		void lockAreaRequest(string area);
+		void unlockAreaRequest(string area);
+		void maintenanceCheck(string area);
+};
 
 #endif
