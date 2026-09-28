@@ -1,4 +1,5 @@
 #include "CampusIncidentCoordinator.h"
+#include "AccessControlAdapter.h"
 
 void CampusIncidentCoordinator::notify(Colleague* team, string type, string location) {
 	if (type == "New alert") {
@@ -28,13 +29,16 @@ CampusIncidentCoordinator::CampusIncidentCoordinator() {
 	teams[0] = new MedicalTeam();
 	teams[1] = new SecurityTeam();
 	teams[2] = new FacilitiesTeam();
+
 	accessSystem = new AccessControlSystem();
+	legacyAccessSystem = new AccessControlAdapter();
 	alertService = new AlertService();
 
 	teams[0]->setMediator(this);
 	teams[1]->setMediator(this);
 	teams[2]->setMediator(this);
 	accessSystem->setMediator(this);
+	legacyAccessSystem->setMediator(this);
 	alertService->setMediator(this);
 }
 
@@ -46,5 +50,31 @@ CampusIncidentCoordinator::~CampusIncidentCoordinator() {
         delete[] teams;
     }
     delete accessSystem;
+	delete legacyAccessSystem;
     delete alertService;
+}
+
+MedicalTeam* CampusIncidentCoordinator::getMedical() {
+    return static_cast<MedicalTeam*>(teams[0]);
+}
+
+SecurityTeam* CampusIncidentCoordinator::getSecurity() {
+    return static_cast<SecurityTeam*>(teams[1]);
+}
+
+FacilitiesTeam* CampusIncidentCoordinator::getFacilities() {
+    return static_cast<FacilitiesTeam*>(teams[2]);
+}
+
+AlertService* CampusIncidentCoordinator::getAlerts() {
+    return alertService;
+}
+
+AccessControlSystem*
+CampusIncidentCoordinator::getAccessSystem(string area) {
+    if (area == "Engineering") {
+        return legacyAccessSystem;
+    }
+
+    return accessSystem;
 }

@@ -4,6 +4,7 @@
 #include "AccessControlSystem.h"
 #include "AlertService.h"
 #include "CampusIncidentCoordinator.h"
+
 namespace CampusGuard {
 	class LockdownProcedures {
 	private:
@@ -15,6 +16,9 @@ namespace CampusGuard {
 		LockdownProcedures();
 		LockdownProcedures(AccessControlSystem* ac, AlertService* as, CampusIncidentCoordinator* coord);
 		~LockdownProcedures();
+		  // Constructor required by the runtime main.
+    	LockdownProcedures(CampusIncidentCoordinator& campus);
+		
 		void activeShooterLockdown();
 		void chemicalLeakLockdown(std::string areaId);
 	};

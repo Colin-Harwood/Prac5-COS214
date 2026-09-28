@@ -27,12 +27,19 @@ void SecureAreaCommand::undo() {
     std::cout << "[SecureAreaCommand] Undoing lockdown for area: " << areaID << "\n";
     std::cout << "  Restoring state to: " << previousState << "\n";
     
-    if (previousState == "UNLOCKED" || previousState == "UNKNOWN") {
-        accessSystem->unlockArea(areaID);
-    } else if (previousState == "RESTRICTED") {
+   if (previousState == "LOCKED" || previousState == "Locked") {
+        accessSystem->lockArea(areaID);
+    }
+    else if (previousState == "RESTRICTED" ||
+             previousState == "Restricted") {
         accessSystem->restrictArea(areaID);
-    } else {
+    }
+    else if (previousState == "UNLOCKED" ||
+             previousState == "Unlocked") {
         accessSystem->unlockArea(areaID);
+    }
+    else {
+        std::cout << "Cannot restore an unknown previous area state.\n";
     }
     
     std::cout << "  State after undo: " << accessSystem->getAreaState(areaID) << "\n";
