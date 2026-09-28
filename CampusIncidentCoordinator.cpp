@@ -2,9 +2,9 @@
 
 void CampusIncidentCoordinator::notify(Colleague* team, string type, string location) {
 	if (type == "New alert") {
-		cout << "New alert for " << location;
+		cout << "New alert for " << location << endl;
 	} else if (type == "Alert cancelled") {
-		cout << "Alert cancellation for " << location;
+		cout << "Alert cancellation for " << location << endl;
 	} else if (type == "Locking area") {
 		teams[2]->dispatchTo(location);
 		cout << "Area " << location << " is locked" << endl;
@@ -30,6 +30,12 @@ CampusIncidentCoordinator::CampusIncidentCoordinator() {
 	teams[2] = new FacilitiesTeam();
 	accessSystem = new AccessControlSystem();
 	alertService = new AlertService();
+
+	teams[0]->setMediator(this);
+	teams[1]->setMediator(this);
+	teams[2]->setMediator(this);
+	accessSystem->setMediator(this);
+	alertService->setMediator(this);
 }
 
 CampusIncidentCoordinator::~CampusIncidentCoordinator() {

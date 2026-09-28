@@ -2,17 +2,19 @@
 #define RESPONSEUNIT_H
 
 #include <string>
+#include "Colleague.h"
 
 namespace CampusGuard
 {
-    class ResponseUnit
+    class ResponseUnit : public Colleague
     {
-    private:
+    protected:
         std::string id;
         std::string type;
         std::string status;
 
     public:
+        ResponseUnit() : id(""), type(""), status("Available") {}
         ResponseUnit(std::string id, std::string type)
             : id(id), type(type), status("Available") {}
 
@@ -24,5 +26,7 @@ namespace CampusGuard
         std::string getStatus() const { return status; }
     };
 }
+
+using CampusGuard::ResponseUnit;
 
 #endif

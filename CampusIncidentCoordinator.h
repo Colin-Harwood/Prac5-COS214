@@ -10,6 +10,8 @@
 #include "AlertService.h"
 #include <string>
 
+using namespace CampusGuard;
+
 class CampusIncidentCoordinator : public IncidentCoordinator {
     private:
         ResponseUnit** teams;

@@ -3,6 +3,8 @@
 
 #include "ResponseUnit.h"
 
+using namespace std;
+
 class MedicalTeam : public ResponseUnit {
 	public:
 		void stretcherAway(string person);

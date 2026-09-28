@@ -6,6 +6,12 @@
 #include "CommandInvoker.h"
 #include "SecureAreaCommand.h"
 
+#include "CampusIncidentCoordinator.h"
+#include "MedicalTeam.h"
+#include "SecurityTeam.h"
+#include "FacilitiesTeam.h"
+#include "AlertService.h"
+
 #include <iostream>
 
 using namespace CampusGuard;
@@ -161,8 +167,55 @@ int main()
     incident.activate();
 
 
+    // =====================================================
+    // 9. MEDIATOR PATTERN
+    // =====================================================
+
+    std::cout << "\n----- MEDIATOR PATTERN -----\n";
+
+    CampusIncidentCoordinator coordinator;
+
+    AlertService alertService;
+    alertService.setMediator(&coordinator);
+
+    MedicalTeam medTeam;
+    medTeam.setMediator(&coordinator);
+
+    SecurityTeam secTeam;
+    secTeam.setMediator(&coordinator);
+
+    FacilitiesTeam facTeam;
+    facTeam.setMediator(&coordinator);
+
+    // 1. AlertService via Mediator
+    std::cout << "\n1. AlertService broadcasting alert:\n";
+    alertService.broadcastAlert("Engineering", "Chemical spill reported in Chemistry Lab");
+
+    std::cout << "\n2. AlertService cancelling alert:\n";
+    alertService.cancelAlert("Engineering");
+
+    // 2. MedicalTeam via Mediator
+    std::cout << "\n3. MedicalTeam handling casualty:\n";
+    medTeam.stretcherAway("Student #101");
+
+    // 3. SecurityTeam via Mediator
+    std::cout << "\n4. SecurityTeam apprehending suspect:\n";
+    secTeam.arrestPerson("Trespasser #42");
+
+    // 4. FacilitiesTeam via Mediator
+    std::cout << "\n5. FacilitiesTeam maintenance check:\n";
+    facTeam.maintenanceCheck("Engineering Floor 2");
+
+    std::cout << "\n6. FacilitiesTeam requesting area unlock via Mediator:\n";
+    facTeam.unlockAreaRequest("Engineering Labs");
+
+    // 5. Colleague base updates
+    std::cout << "\n7. Testing base Colleague update notification:\n";
+    alertService.changed();
+    medTeam.changed();
+
     std::cout << "\n=====================================\n";
-    std::cout << "TEST COMPLETE\n";
+    std::cout << "ALL INTEGRATION TESTS COMPLETE\n";
     std::cout << "=====================================\n";
 
     // DO NOT:

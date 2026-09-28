@@ -1,7 +1,7 @@
 #ifndef COLLEAGUE_H
 #define COLLEAGUE_H
 
-class IncidentCoordinator;
+#include "IncidentCoordinator.h"
 
 #include <iostream>
 
@@ -11,6 +11,8 @@ protected:
 	IncidentCoordinator* mediator;
 
 public:
+	Colleague(IncidentCoordinator* mediator = nullptr) : mediator(mediator) {}
+	void setMediator(IncidentCoordinator* m) { mediator = m; }
 	void changed();
 };
 

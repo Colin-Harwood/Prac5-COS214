@@ -3,6 +3,8 @@
 
 #include "ResponseUnit.h"
 
+using namespace std;
+
 class FacilitiesTeam : public ResponseUnit {
 	public:
 		void lockAreaRequest(string area);
