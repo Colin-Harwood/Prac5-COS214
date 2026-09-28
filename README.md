@@ -12,23 +12,24 @@ Campus guard is an emergency-response coordination platform for universities.
 
 ## Build & Run with Docker Compose
 
-### Quick start
+### Build the app
 
 ```bash
-docker compose up --build
+docker compose run --rm campusguard
 ```
 
 ### Clean rebuild
 
 ```bash
 docker compose down --rmi local
-docker compose up --build
+docker compose build --no-cache
+docker compose run --rm campusguard
 ```
 
 ### Run with Valgrind
 
 ```bash
-docker compose --profile debug up --build
+docker compose --profile debug run --rm valgrind
 ```
 
 ### Run with GDB
@@ -37,19 +38,19 @@ docker compose --profile debug up --build
 docker compose run --rm --entrypoint gdb campusguard ./campusguard
 ```
 
-Then inside GDB:
+### Stop / clean up
 
-```gdb
-run
-bt
-info locals
+```bash
+docker compose down                         
+docker compose down --rmi local             
+docker compose down --rmi local --volumes    
 ```
 
 ### Build locally (no Docker)
 
 ```bash
-make          # produces build/campusguard
-make run      # runs it
-make valgrind # runs it under valgrind
+make          
+make run      
+make valgrind
 make gdb
 ```
