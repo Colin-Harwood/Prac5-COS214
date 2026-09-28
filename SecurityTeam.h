@@ -1,14 +1,11 @@
 #ifndef SECURITYTEAM_H
 #define SECURITYTEAM_H
 
-namespace CampusGuard {
-	class SecurityTeam : CampusGuard::ResponseUnit {
+#include "ResponseUnit.h"
 
-	private:
-		string id;
-		string type;
-		string available;
-	};
-}
+class SecurityTeam : ResponseUnit {
+	public:
+		void arrestPerson(string person);
+};
 
 #endif

@@ -1,14 +1,11 @@
 #ifndef MEDICALTEAM_H
 #define MEDICALTEAM_H
 
-namespace CampusGuard {
-	class MedicalTeam : CampusGuard::ResponseUnit {
+#include "ResponseUnit.h"
 
-	private:
-		string id;
-		string type;
-		string available;
-	};
-}
+class MedicalTeam : ResponseUnit {
+	public:
+		void stretcherAway(string person);
+};
 
 #endif

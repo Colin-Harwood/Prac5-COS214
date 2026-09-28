@@ -1,15 +1,15 @@
 #ifndef COLLEAGUE_H
 #define COLLEAGUE_H
 
-namespace CampusGuard {
-	class Colleague {
+#include "IncidentCoordinator.h"
 
-	private:
-		CampusGuard::IncidentCoordinator* mediator;
+class Colleague {
 
-	public:
-		void changed();
-	};
-}
+private:
+	IncidentCoordinator* mediator;
+
+public:
+	void changed();
+};
 
 #endif
