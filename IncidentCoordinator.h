@@ -9,6 +9,8 @@ using namespace std;
 class IncidentCoordinator {
 	public:
 		virtual void notify(Colleague* team, string type, string location) = 0;
+		virtual ~IncidentCoordinator() = default;
+
 };
 
 #endif

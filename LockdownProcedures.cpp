@@ -19,6 +19,16 @@ LockdownProcedures::LockdownProcedures(AccessControlSystem* ac, AlertService* as
       ownsResources(false)
 {
 }
+
+LockdownProcedures::LockdownProcedures(
+    CampusIncidentCoordinator& campus
+)
+    : accessControl(campus.getAccessSystem("Science Building")),
+      alertService(campus.getAlerts()),
+      coordinator(&campus),
+      ownsResources(false) {
+}
+
 LockdownProcedures::~LockdownProcedures() {
     if (ownsResources) {
         delete accessControl;
