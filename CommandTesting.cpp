@@ -7,7 +7,7 @@
 #include "CancelActionCommand.h"
 #include "Incident.h"
 #include "ResponseUnit.h"
-#include "AccessControlSystem.h"
+#include "AccessControlAdapter.h"
 #include "AlertService.h"
 
 using namespace CampusGuard;
@@ -20,7 +20,7 @@ int main() {
     Incident* incident = new Incident("INC-001", "Fire", "Science Building", "Smoke detected on 3rd floor");
     ResponseUnit* fireTeam = new ResponseUnit("RU-101", "Fire Department");
     ResponseUnit* securityTeam = new ResponseUnit("RU-102", "Security");
-    AccessControlSystem* accessSystem = new AccessControlSystem();
+    AccessControlSystem* accessSystem = new AccessControlAdapter();
     AlertService* alertService = new AlertService();
 
     CommandInvoker invoker;
@@ -37,7 +37,7 @@ int main() {
 
     // 3. Secure the area
     std::cout << "\n--- 3. Securing Area ---\n";
-    Command* secureArea = new SecureAreaCommand(accessSystem, "SCI-301");
+    Command* secureArea = new SecureAreaCommand(accessSystem, "Engineering");
     invoker.submit(secureArea);
 
     // 4. Issue evacuation

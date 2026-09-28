@@ -2,15 +2,10 @@
 #define ACCESSCONTROLSYSTEM_H
 
 #include <string>
-#include <map>
 
 namespace CampusGuard
 {
 	class AccessControlSystem{
-
-	private:
-        std::map<std::string, std::string> areaStates;
-
 	public:
 		AccessControlSystem() = default;
 		
