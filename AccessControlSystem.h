@@ -4,7 +4,8 @@
 #include <string>
 #include <map>
 
-namespace CampusGuard {
+namespace CampusGuard
+{
 	class AccessControlSystem{
 
 	private:
@@ -13,14 +14,14 @@ namespace CampusGuard {
 	public:
 		AccessControlSystem() = default;
 		
-		bool lockArea(std::string areaId);
+		virtual bool lockArea(std::string areaId) = 0;
 
-		bool unlockArea(std::string areaId);
+		virtual bool unlockArea(std::string areaId) = 0;
 
-		bool restrictArea(std::string areaId);
+		virtual bool restrictArea(std::string areaId) = 0;
 
-		std::string getAreaState(std::string areaId);
+		virtual std::string getAreaState(std::string areaId) =0;
+		virtual ~AccessControlSystem() {}
 	};
 }
-
 #endif

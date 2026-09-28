@@ -1,22 +1,30 @@
 #ifndef ACCESSCONTROLADAPTER_H
 #define ACCESSCONTROLADAPTER_H
 
-namespace CampusGuard {
-	class AccessControlAdapter : CampusGuard::AccessControlSystem {
+#include "AccessControlSystem.h"
+#include "LegacyDoorSystem.h"
+
+#include <map>
+#include <string>
+
+namespace CampusGuard
+{
+	class AccessControlAdapter : public AccessControlSystem {
 
 	private:
 		LegacyDoorSystem legacySystem;
-		map<string, int> areaMapping;
-
+		std::map<std::string, int> areaMapping;
 	public:
-		bool lockArea(string areaID);
+		AccessControlAdapter();
+		bool lockArea(std::string areaId) override;
 
-		bool unlockArea(string areaId);
+		bool unlockArea(std::string areaId) override;
 
-		bool restrictArea(string areaId);
+		bool restrictArea(std::string areaId) override;
 
-		string getAreaState(string areaId);
+		std::string getAreaState(std::string areaId) override;
 	};
-}
 
+}
+	
 #endif
