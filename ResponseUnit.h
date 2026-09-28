@@ -7,7 +7,7 @@
 
 namespace CampusGuard
 {
-    class ResponseUnit : public Colleague
+    class ResponseUnit : public Colleague, public Observer
     {
     protected:
         std::string id;
