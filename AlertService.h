@@ -1,15 +1,17 @@
 #ifndef ALERTSERVICE_H
 #define ALERTSERVICE_H
 
-namespace CampusGuard {
-	class AlertService : CampusGuard::Colleague {
+#include "Colleague.h"
 
+#include <string>
+using namespace std;
 
-	public:
-		void broadcastAlert(string BuildingId, string message);
+class AlertService : Colleague {
 
-		void cancelAlert(string buildingId);
-	};
-}
+public:
+	void broadcastAlert(string BuildingId, string message);
+
+	void cancelAlert(string buildingId);
+};
 
 #endif

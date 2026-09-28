@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class ResponseUnit : Colleague {
+class ResponseUnit : public Colleague {
     protected:
         string id;
         string type;

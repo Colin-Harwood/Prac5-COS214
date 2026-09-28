@@ -3,9 +3,11 @@
 
 #include "IncidentCoordinator.h"
 
+#include <iostream>
+
 class Colleague {
 
-private:
+protected:
 	IncidentCoordinator* mediator;
 
 public:

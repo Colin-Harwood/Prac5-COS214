@@ -3,7 +3,7 @@
 
 #include "ResponseUnit.h"
 
-class SecurityTeam : ResponseUnit {
+class SecurityTeam : public ResponseUnit {
 	public:
 		void arrestPerson(string person);
 };

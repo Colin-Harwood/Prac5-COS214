@@ -1,21 +1,21 @@
 #include "AccessControlSystem.h"
 
-bool CampusGuard::AccessControlSystem::lockArea(string areaId) {
-	// TODO - implement AccessControlSystem::lockArea
-	throw "Not yet implemented";
+bool AccessControlSystem::lockArea(string areaId) {
+	cout << "Locking " << areaId << endl;
+	mediator->notify(this, "Locking area", areaId);
 }
 
-bool CampusGuard::AccessControlSystem::unlockArea(string areaId) {
-	// TODO - implement AccessControlSystem::unlockArea
-	throw "Not yet implemented";
+bool AccessControlSystem::unlockArea(string areaId) {
+	cout << "Unlocking " << areaId << endl;
+	mediator->notify(this, "Unlocking area", areaId);
 }
 
-bool CampusGuard::AccessControlSystem::restrictArea(string areaId) {
-	// TODO - implement AccessControlSystem::restrictArea
-	throw "Not yet implemented";
+bool AccessControlSystem::restrictArea(string areaId) {
+	cout << "Restricting " << areaId << endl;
+	mediator->notify(this, "Restricting area", areaId);
 }
 
-string CampusGuard::AccessControlSystem::getAreaState(string areaId) {
-	// TODO - implement AccessControlSystem::getAreaState
-	throw "Not yet implemented";
+string AccessControlSystem::getAreaState(string areaId) {
+	cout << "Getting the state of " << areaId << endl;
+	return "Good";
 }

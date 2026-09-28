@@ -1,9 +1,9 @@
 #ifndef ACCESSCONTROLSYSTEM_H
 #define ACCESSCONTROLSYSTEM_H
 
-namespace CampusGuard {
-	class AccessControlSystem : CampusGuard::Colleague {
+#include "Colleague.h"
 
+class AccessControlSystem : Colleague {
 
 	public:
 		bool lockArea(string areaId);
@@ -13,7 +13,6 @@ namespace CampusGuard {
 		bool restrictArea(string areaId);
 
 		string getAreaState(string areaId);
-	};
-}
+};
 
 #endif
