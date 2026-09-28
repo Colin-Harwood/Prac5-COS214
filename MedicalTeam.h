@@ -3,7 +3,7 @@
 
 #include "ResponseUnit.h"
 
-class MedicalTeam : ResponseUnit {
+class MedicalTeam : public ResponseUnit {
 	public:
 		void stretcherAway(string person);
 };

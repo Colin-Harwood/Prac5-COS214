@@ -3,7 +3,7 @@
 
 #include "ResponseUnit.h"
 
-class FacilitiesTeam : ResponseUnit {
+class FacilitiesTeam : public ResponseUnit {
 	public:
 		void lockAreaRequest(string area);
 		void unlockAreaRequest(string area);
