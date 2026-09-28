@@ -1,11 +1,15 @@
 #include "AlertService.h"
+#include <iostream>
 
-void CampusGuard::AlertService::broadcastAlert(string BuildingId, string message) {
-	// TODO - implement AlertService::broadcastAlert
-	throw "Not yet implemented";
+namespace CampusGuard {
+
+void AlertService::broadcastAlert(std::string buildingId, std::string message) {
+    std::cout << "[AlertService] Broadcasting to building " << buildingId << ":\n";
+    std::cout << "  >>> " << message << " <<<\n";
 }
 
-void CampusGuard::AlertService::cancelAlert(string buildingId) {
-	// TODO - implement AlertService::cancelAlert
-	throw "Not yet implemented";
+void AlertService::cancelAlert(std::string buildingId) {
+    std::cout << "[AlertService] Cancelling alert for building " << buildingId << "\n";
+}
+
 }

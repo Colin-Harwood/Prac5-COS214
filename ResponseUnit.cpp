@@ -1,11 +1,12 @@
 #include "ResponseUnit.h"
+#include <iostream>
 
-void CampusGuard::ResponseUnit::dispatchTo(string Destination) {
-	// TODO - implement ResponseUnit::dispatchTo
-	throw "Not yet implemented";
+void CampusGuard::ResponseUnit::dispatchTo(std::string destination) {
+	std::cout << "[ResponseUnit " << id << " (" << type << ")] Dispatching to: " << destination << "\n";
+    status = "Dispatched to " + destination;
 }
 
 void CampusGuard::ResponseUnit::markUnavailable() {
-	// TODO - implement ResponseUnit::markUnavailable
-	throw "Not yet implemented";
+	std::cout << "[ResponseUnit " << id << " (" << type << ")] Marked as unavailable.\n";
+    status = "Unavailable";
 }

@@ -1,21 +1,26 @@
 #ifndef INCIDENTCOMMAND_H
 #define INCIDENTCOMMAND_H
 
+#include "Command.h"
+#include "Incident.h"
+#include <string>
+
 namespace CampusGuard {
 	class IncidentCommand : CampusGuard::Command {
 
 	protected:
 		Incident* incident;
-		string description;
+		std::string description;
 
 	public:
-		IncidentCommand(Incident* incident, string description);
+		IncidentCommand(Incident* incident, std::string description);
+		~IncidentCommand() override = default;
 
-		void execute();
+		void execute() override;
 
-		void undo();
+		void undo() override;
 
-		string getDescription();
+		std::string getDescription() override;
 	};
 }
 

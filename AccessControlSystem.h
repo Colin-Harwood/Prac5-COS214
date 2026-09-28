@@ -1,18 +1,25 @@
 #ifndef ACCESSCONTROLSYSTEM_H
 #define ACCESSCONTROLSYSTEM_H
 
-namespace CampusGuard {
-	class AccessControlSystem : CampusGuard::Colleague {
+#include <string>
+#include <map>
 
+namespace CampusGuard {
+	class AccessControlSystem{
+
+	private:
+        std::map<std::string, std::string> areaStates;
 
 	public:
-		bool lockArea(string areaId);
+		AccessControlSystem() = default;
+		
+		bool lockArea(std::string areaId);
 
-		bool unlockArea(string areaId);
+		bool unlockArea(std::string areaId);
 
-		bool restrictArea(string areaId);
+		bool restrictArea(std::string areaId);
 
-		string getAreaState(string areaId);
+		std::string getAreaState(std::string areaId);
 	};
 }
 

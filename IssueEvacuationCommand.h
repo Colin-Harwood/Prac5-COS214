@@ -1,22 +1,28 @@
 #ifndef ISSUEEVACUATIONCOMMAND_H
 #define ISSUEEVACUATIONCOMMAND_H
 
+#include "Command.h"
+#include "AlertService.h"
+#include <string>
+
 namespace CampusGuard {
-	class IssueEvacuationCommand : CampusGuard::Command {
+	class IssueEvacuationCommand : public Command {
 
 	private:
 		AlertService* alertService;
-		string buildingId;
-		string message;
+		std::string buildingId;
+		std::string message;
 
 	public:
-		IssueEvacuationCommand(AlertService* alertService, string buildingId, string message);
+		IssueEvacuationCommand(AlertService* alertService, std::string buildingId, std::string message);
 
-		void execute();
+		~IssueEvacuationCommand() override = default;
 
-		void undo();
+		void execute() override;
 
-		string getDescription();
+		void undo() override;
+
+		std::string getDescription() override;
 	};
 }
 

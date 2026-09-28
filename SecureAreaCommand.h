@@ -1,22 +1,27 @@
 #ifndef SECUREAREACOMMAND_H
 #define SECUREAREACOMMAND_H
 
+#include "Command.h"
+#include "AccessControlSystem.h"
+#include <string>
+
 namespace CampusGuard {
-	class SecureAreaCommand : CampusGuard::Command {
+	class SecureAreaCommand : public Command {
 
 	private:
 		AccessControlSystem* accessSystem;
-		string areaID;
-		string previousState;
+		std::string areaID;
+		std::string previousState;
 
 	public:
-		SecureAreaCommand(AccessControlSystem* accessSystem, string areaId);
+		SecureAreaCommand(AccessControlSystem* accessSystem, std::string areaId);
+		~SecureAreaCommand() override = default;
 
-		void execute();
+		void execute() override;
 
-		void undo();
+		void undo() override;
 
-		string getDescription();
+		std::string getDescription() override;
 	};
 }
 

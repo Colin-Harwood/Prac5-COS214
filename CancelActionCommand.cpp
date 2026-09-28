@@ -1,21 +1,35 @@
 #include "CancelActionCommand.h"
+#include <iostream>
 
-CampusGuard::CancelActionCommand::CancelActionCommand(CampusGuard::Command* commandToCancel) {
-	// TODO - implement CancelActionCommand::CancelActionCommand
-	throw "Not yet implemented";
-}
+namespace CampusGuard
+{
 
-void CampusGuard::CancelActionCommand::execute() {
-	// TODO - implement CancelActionCommand::execute
-	throw "Not yet implemented";
-}
+	CancelActionCommand::CancelActionCommand(Command *commandToCancel)
+		: commandToCancel(commandToCancel)
+	{
+		if (commandToCancel == nullptr)
+		{
+			throw std::invalid_argument("CancelActionCommand requires a valid Command pointer.");
+		}
+	}
 
-void CampusGuard::CancelActionCommand::undo() {
-	// TODO - implement CancelActionCommand::undo
-	throw "Not yet implemented";
-}
+	void CancelActionCommand::execute()
+	{
+		std::cout << "[CancelActionCommand] Cancelling action: "
+				  << commandToCancel->getDescription() << "\n";
+		commandToCancel->undo();
+	}
 
-string CampusGuard::CancelActionCommand::getDescription() {
-	// TODO - implement CancelActionCommand::getDescription
-	throw "Not yet implemented";
+	void CancelActionCommand::undo()
+	{
+		std::cout << "[CancelActionCommand] Restoring cancelled action: "
+				  << commandToCancel->getDescription() << "\n";
+		commandToCancel->execute();
+	}
+
+	std::string CancelActionCommand::getDescription()
+	{
+		return "Cancel: " + commandToCancel->getDescription();
+	}
+
 }
