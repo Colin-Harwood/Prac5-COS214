@@ -1,19 +1,25 @@
 #ifndef CANCELACTIONCOMMAND_H
 #define CANCELACTIONCOMMAND_H
 
-namespace CampusGuard {
-	class CancelActionCommand : CampusGuard::Command {
+#include "Command.h"
+#include <string>
+
+namespace CampusGuard
+{
+	class CancelActionCommand : public Command
+	{
+	private:
+		Command *commandToCancel;
 
 	public:
-		CampusGuard::Command* commandToCancel;
+		CancelActionCommand(Command *commandToCancel);
+		~CancelActionCommand() override = default;
 
-		CancelActionCommand(CampusGuard::Command* commandToCancel);
+		void execute() override;
 
-		void execute();
+		void undo() override;
 
-		void undo();
-
-		string getDescription();
+		std::string getDescription() override;
 	};
 }
 

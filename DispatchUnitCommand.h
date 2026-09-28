@@ -1,22 +1,26 @@
 #ifndef DISPATCHUNITCOMMAND_H
 #define DISPATCHUNITCOMMAND_H
 
+#include "Command.h"
+#include "Incident.h"
+#include "ResponseUnit.h"
+#include <string>
+
 namespace CampusGuard {
-	class DispatchUnitCommand : CampusGuard::Command {
+	class DispatchUnitCommand : public Command {
 
 	private:
 		ResponseUnit* responder;
 		Incident* incident;
-		string destination;
+		std::string destination;
 
 	public:
-		DispatchUnitCommand(ResponseUnit* responder, incident* incident, string destination);
+		DispatchUnitCommand(ResponseUnit* responder, Incident* incident, std::string destination);
+		~DispatchUnitCommand() override = default;
 
 		void execute();
-
 		void undo();
-
-		string getDescription();
+		std::string getDescription();
 	};
 }
 

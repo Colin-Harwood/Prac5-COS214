@@ -1,15 +1,24 @@
 #ifndef COMMANDINVOKER_H
 #define COMMANDINVOKER_H
 
-namespace CampusGuard {
-	class CommandInvoker {
+#include <vector>
+#include <string>
+#include "Command.h"
 
+namespace CampusGuard
+{
+	class CommandInvoker
+	{
 	private:
-		vector<Command*> History;
-		vector<Command*> redoStack;
+		std::vector<Command *> History;
+		std::vector<Command *> redoStack;
 
 	public:
-		void submit(Command* command);
+		CommandInvoker() = default;
+
+		~CommandInvoker();
+
+		void submit(Command *command);
 
 		void undoLast();
 

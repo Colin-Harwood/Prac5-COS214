@@ -1,14 +1,18 @@
 #ifndef ALERTSERVICE_H
 #define ALERTSERVICE_H
 
+#include <string>
+
 namespace CampusGuard {
-	class AlertService : CampusGuard::Colleague {
+	class AlertService{
 
 
 	public:
-		void broadcastAlert(string BuildingId, string message);
+		AlertService() = default;
 
-		void cancelAlert(string buildingId);
+		void broadcastAlert(std::string BuildingId, std::string message);
+
+		void cancelAlert(std::string buildingId);
 	};
 }
 

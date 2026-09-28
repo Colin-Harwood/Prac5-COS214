@@ -1,21 +1,41 @@
 #include "AccessControlSystem.h"
+#include <iostream>
 
-bool CampusGuard::AccessControlSystem::lockArea(string areaId) {
-	// TODO - implement AccessControlSystem::lockArea
-	throw "Not yet implemented";
+namespace CampusGuard {
+
+bool AccessControlSystem::lockArea(std::string areaId) {
+    if (areaStates.find(areaId) == areaStates.end()) {
+        areaStates[areaId] = "Unlocked";
+    }
+    std::cout << "[AccessControlSystem] Locking area: " << areaId << "\n";
+    areaStates[areaId] = "Locked";
+    return true;
 }
 
-bool CampusGuard::AccessControlSystem::unlockArea(string areaId) {
-	// TODO - implement AccessControlSystem::unlockArea
-	throw "Not yet implemented";
+bool AccessControlSystem::unlockArea(std::string areaId) {
+    if (areaStates.find(areaId) == areaStates.end()) {
+        areaStates[areaId] = "Unlocked";
+    }
+    std::cout << "[AccessControlSystem] Unlocking area: " << areaId << "\n";
+    areaStates[areaId] = "Unlocked";
+    return true;
 }
 
-bool CampusGuard::AccessControlSystem::restrictArea(string areaId) {
-	// TODO - implement AccessControlSystem::restrictArea
-	throw "Not yet implemented";
+bool AccessControlSystem::restrictArea(std::string areaId) {
+    if (areaStates.find(areaId) == areaStates.end()) {
+        areaStates[areaId] = "Unlocked";
+    }
+    std::cout << "[AccessControlSystem] Restricting area: " << areaId << "\n";
+    areaStates[areaId] = "Restricted";
+    return true;
 }
 
-string CampusGuard::AccessControlSystem::getAreaState(string areaId) {
-	// TODO - implement AccessControlSystem::getAreaState
-	throw "Not yet implemented";
+std::string AccessControlSystem::getAreaState(std::string areaId) {
+    auto it = areaStates.find(areaId);
+    if (it != areaStates.end()) {
+        return it->second;
+    }
+    return "Unknown";
 }
+
+} 

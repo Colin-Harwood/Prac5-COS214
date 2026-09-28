@@ -1,21 +1,45 @@
 #include "DispatchUnitCommand.h"
+#include <iostream>
 
-CampusGuard::DispatchUnitCommand::DispatchUnitCommand(ResponseUnit* responder, incident* incident, string destination) {
-	// TODO - implement DispatchUnitCommand::DispatchUnitCommand
-	throw "Not yet implemented";
-}
+namespace CampusGuard
+{
 
-void CampusGuard::DispatchUnitCommand::execute() {
-	// TODO - implement DispatchUnitCommand::execute
-	throw "Not yet implemented";
-}
+	DispatchUnitCommand::DispatchUnitCommand(ResponseUnit *responder, Incident *incident, std::string destination)
+		: responder(responder), incident(incident), destination(destination)
+	{
+		if (responder == nullptr || incident == nullptr)
+		{
+			throw std::invalid_argument("DispatchUnitCommand requires valid responder and incident pointers.");
+		}
+	}
 
-void CampusGuard::DispatchUnitCommand::undo() {
-	// TODO - implement DispatchUnitCommand::undo
-	throw "Not yet implemented";
-}
+	void DispatchUnitCommand::execute()
+	{
+		std::cout << "[DispatchUnitCommand] Executing dispatch\n";
+		std::cout << "  Incident: " << incident->getId() << " at " << incident->getLocation() << "\n";
+		std::cout << "  Unit: " << responder->getId() << " (" << responder->getType() << ")\n";
+		std::cout << "  Destination: " << destination << "\n";
 
-string CampusGuard::DispatchUnitCommand::getDescription() {
-	// TODO - implement DispatchUnitCommand::getDescription
-	throw "Not yet implemented";
+		responder->dispatchTo(destination);
+		incident->activate();
+
+		std::cout << "  Incident state: " << incident->getStateName() << "\n";
+	}
+
+	void DispatchUnitCommand::undo()
+	{
+		std::cout << "[DispatchUnitCommand] Undoing dispatch\n";
+		std::cout << "  Recalling unit " << responder->getId() << " from " << destination << "\n";
+
+		responder->markUnavailable();
+
+		std::cout << "  Incident state after undo: " << incident->getStateName() << "\n";
+	}
+
+	std::string DispatchUnitCommand::getDescription()
+	{
+		return "Dispatch unit " + responder->getId() + " to " + destination +
+			   " for incident " + incident->getId();
+	}
+
 }

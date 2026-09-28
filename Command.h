@@ -1,16 +1,15 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include <string>
+
 namespace CampusGuard {
 	class Command {
-
-
 	public:
-		void execute();
-
-		void undo();
-
-		string getDescription();
+		virtual ~Command() = default;
+        virtual void execute() = 0;
+        virtual void undo() = 0;
+        virtual std::string getDescription() = 0;
 	};
 }
 

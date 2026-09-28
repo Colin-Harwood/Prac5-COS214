@@ -1,21 +1,27 @@
 #include "IssueEvacuationCommand.h"
+#include <iostream>
 
-CampusGuard::IssueEvacuationCommand::IssueEvacuationCommand(AlertService* alertService, string buildingId, string message) {
-	// TODO - implement IssueEvacuationCommand::IssueEvacuationCommand
-	throw "Not yet implemented";
+namespace CampusGuard {
+
+IssueEvacuationCommand::IssueEvacuationCommand(AlertService* alertService, std::string buildingId, std::string message)
+    : alertService(alertService), buildingId(buildingId), message(message) {
+    if (alertService == nullptr) {
+        throw std::invalid_argument("IssueEvacuationCommand requires a valid AlertService pointer.");
+    }
 }
 
-void CampusGuard::IssueEvacuationCommand::execute() {
-	// TODO - implement IssueEvacuationCommand::execute
-	throw "Not yet implemented";
+void IssueEvacuationCommand::execute() {
+    std::cout << "[IssueEvacuationCommand] Issuing evacuation for building: " << buildingId << "\n";
+    alertService->broadcastAlert(buildingId, message);
 }
 
-void CampusGuard::IssueEvacuationCommand::undo() {
-	// TODO - implement IssueEvacuationCommand::undo
-	throw "Not yet implemented";
+void IssueEvacuationCommand::undo() {
+    std::cout << "[IssueEvacuationCommand] Cancelling evacuation for building: " << buildingId << "\n";
+    alertService->cancelAlert(buildingId);
 }
 
-string CampusGuard::IssueEvacuationCommand::getDescription() {
-	// TODO - implement IssueEvacuationCommand::getDescription
-	throw "Not yet implemented";
+std::string IssueEvacuationCommand::getDescription() {
+    return "Issue evacuation for building " + buildingId + ": " + message;
+}
+
 }

@@ -1,21 +1,44 @@
 #include "SecureAreaCommand.h"
+#include <iostream>
 
-CampusGuard::SecureAreaCommand::SecureAreaCommand(AccessControlSystem* accessSystem, string areaId) {
-	// TODO - implement SecureAreaCommand::SecureAreaCommand
-	throw "Not yet implemented";
+namespace CampusGuard {
+
+SecureAreaCommand::SecureAreaCommand(AccessControlSystem* accessSystem, std::string areaId)
+    : accessSystem(accessSystem), areaID(areaId), previousState("Unknown") {
+    if (accessSystem == nullptr) {
+        throw std::invalid_argument("SecureAreaCommand requires a valid AccessControlSystem pointer.");
+    }
 }
 
-void CampusGuard::SecureAreaCommand::execute() {
-	// TODO - implement SecureAreaCommand::execute
-	throw "Not yet implemented";
+void SecureAreaCommand::execute() {
+    // Save previous state for undo
+    previousState = accessSystem->getAreaState(areaID);
+    
+    std::cout << "[SecureAreaCommand] Executing lockdown for area: " << areaID << "\n";
+    std::cout << "  Previous state: " << previousState << "\n";
+    
+    accessSystem->lockArea(areaID);
+    
+    std::cout << "  New state: " << accessSystem->getAreaState(areaID) << "\n";
 }
 
-void CampusGuard::SecureAreaCommand::undo() {
-	// TODO - implement SecureAreaCommand::undo
-	throw "Not yet implemented";
+void SecureAreaCommand::undo() {
+    std::cout << "[SecureAreaCommand] Undoing lockdown for area: " << areaID << "\n";
+    std::cout << "  Restoring state to: " << previousState << "\n";
+    
+    if (previousState == "Unlocked" || previousState == "Unknown") {
+        accessSystem->unlockArea(areaID);
+    } else if (previousState == "Restricted") {
+        accessSystem->restrictArea(areaID);
+    } else {
+        accessSystem->unlockArea(areaID);
+    }
+    
+    std::cout << "  State after undo: " << accessSystem->getAreaState(areaID) << "\n";
 }
 
-string CampusGuard::SecureAreaCommand::getDescription() {
-	// TODO - implement SecureAreaCommand::getDescription
-	throw "Not yet implemented";
+std::string SecureAreaCommand::getDescription() {
+    return "Lock down area: " + areaID;
+}
+
 }
