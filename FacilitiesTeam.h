@@ -1,14 +1,15 @@
 #ifndef FACILITIESTEAM_H
 #define FACILITIESTEAM_H
 
+#include "ResponseUnit.h"
+
 namespace CampusGuard {
-	class FacilitiesTeam : CampusGuard::ResponseUnit {
+    class FacilitiesTeam : public ResponseUnit {
+    public:
+        FacilitiesTeam(std::string id)
+            : ResponseUnit(id, "Facilities Team") {}
 
-	private:
-		string id;
-		string type;
-		string available;
-	};
+        void update(Incident* incident) override;
+    };
 }
-
 #endif

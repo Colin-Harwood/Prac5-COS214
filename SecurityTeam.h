@@ -1,14 +1,17 @@
 #ifndef SECURITYTEAM_H
 #define SECURITYTEAM_H
 
-namespace CampusGuard {
-	class SecurityTeam : CampusGuard::ResponseUnit {
+#include "ResponseUnit.h"
 
-	private:
-		string id;
-		string type;
-		string available;
+namespace CampusGuard
+{
+	class SecurityTeam : public ResponseUnit
+	{
+	public:
+		SecurityTeam(std::string id)
+			: ResponseUnit(id, "Security Team") {}
+
+		void update(Incident *incident) override;
 	};
 }
-
 #endif
