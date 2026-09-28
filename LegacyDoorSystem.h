@@ -1,17 +1,21 @@
 #ifndef LEGACYDOORSYSTEM_H
 #define LEGACYDOORSYSTEM_H
 
-namespace CampusGuard {
+#include <map>
+#include <string>
+
+namespace CampusGuard
+{
 	class LegacyDoorSystem {
 
 	private:
-		map<int, string> buildingStates;
+		std::map<int, std::string> buildingStates;
 
 	public:
-		void setBuildingMode(int code, string mode);
+		void setBuildingMode(int code, std::string mode);
 
-		void getBuildingMode(int code);
-	};
+		std::string getBuildingMode(int code);
+};
 }
 
 #endif
