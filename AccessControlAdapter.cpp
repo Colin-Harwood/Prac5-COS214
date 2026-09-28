@@ -18,6 +18,10 @@ bool CampusGuard::AccessControlAdapter::lockArea(std::string areaId) {
 
     legacySystem.setBuildingMode(it->second, "LOCKED");
 
+    if (mediator != nullptr) {
+        mediator->notify(this, "Locking area", areaId);
+    }
+
     return true;
 }
 
@@ -33,6 +37,10 @@ bool CampusGuard::AccessControlAdapter::unlockArea(std::string areaId) {
 
     legacySystem.setBuildingMode(it->second, "UNLOCKED");
 
+    if (mediator != nullptr) {
+        mediator->notify(this, "Unlocking area", areaId);
+    }
+    
     return true;
 }
 
@@ -47,6 +55,9 @@ bool CampusGuard::AccessControlAdapter::restrictArea(std::string areaId) {
     }
 
     legacySystem.setBuildingMode(it->second, "RESTRICTED");
+     if (mediator != nullptr) {
+        mediator->notify(this, "Restricting area", areaId);
+    }
 
     return true;
 }
