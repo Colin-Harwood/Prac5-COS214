@@ -6,7 +6,7 @@
 #include <string>
 
 namespace CampusGuard {
-	class IncidentCommand : CampusGuard::Command {
+	class IncidentCommand : public Command {
 
 	protected:
 		Incident* incident;

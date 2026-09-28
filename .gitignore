@@ -70,3 +70,6 @@ Testing/
 .cache/
 
 .vscode
+
+#executable
+campusguard

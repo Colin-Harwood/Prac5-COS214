@@ -32,7 +32,6 @@ namespace CampusGuard
 		std::cout << "  Recalling unit " << responder->getId() << " from " << destination << "\n";
 
 		responder->markUnavailable();
-		incident->resolve();
 
 		std::cout << "  Incident state after undo: " << incident->getStateName() << "\n";
 	}
