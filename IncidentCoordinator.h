@@ -2,7 +2,7 @@
 #define INCIDENTCOORDINATOR_H
 
 #include <string>
-#include "Colleague.h"
+class Colleague;
 
 using namespace std;
 

@@ -28,4 +28,17 @@ CampusIncidentCoordinator::CampusIncidentCoordinator() {
 	teams[0] = new MedicalTeam();
 	teams[1] = new SecurityTeam();
 	teams[2] = new FacilitiesTeam();
+	accessSystem = new AccessControlSystem();
+	alertService = new AlertService();
+}
+
+CampusIncidentCoordinator::~CampusIncidentCoordinator() {
+    if (teams) {
+        delete teams[0];
+        delete teams[1];
+        delete teams[2];
+        delete[] teams;
+    }
+    delete accessSystem;
+    delete alertService;
 }

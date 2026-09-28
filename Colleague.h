@@ -1,7 +1,7 @@
 #ifndef COLLEAGUE_H
 #define COLLEAGUE_H
 
-#include "IncidentCoordinator.h"
+class IncidentCoordinator;
 
 #include <iostream>
 
