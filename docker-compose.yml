@@ -1,0 +1,18 @@
+services:
+  campusguard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: campusguard:latest
+    container_name: campusguard-app
+    stdin_open: true       
+    tty: true              
+
+  valgrind:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: campusguard:latest
+    container_name: campusguard-valgrind
+    entrypoint: ["valgrind", "--leak-check=full", "--show-leak-kinds=all", "--track-origins=yes", "./campusguard"]
+    profiles: ["debug"]
